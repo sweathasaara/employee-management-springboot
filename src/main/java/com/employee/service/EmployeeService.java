@@ -14,19 +14,19 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository repository;
 
-    public Employee addEmployee(Employee emp){
-        return repository.save(emp);
+    public Employee addEmployee(Employee employee) {
+        return repository.save(employee);
     }
 
-    public List<Employee> getEmployees(){
+    public List<Employee> getEmployees() {
         return repository.findAll();
     }
 
-    public Employee getEmployee(int id){
+    public Employee getEmployee(int id) {
         return repository.findById(id).orElse(null);
     }
 
-    public void deleteEmployee(int id){
+    public void deleteEmployee(int id) {
         repository.deleteById(id);
     }
 }

@@ -15,24 +15,36 @@ public class EmployeeController {
     @Autowired
     private EmployeeService service;
 
+    // ADD EMPLOYEE
     @PostMapping
-    public Employee add(@RequestBody Employee e){
-        return service.addEmployee(e);
+    public Employee addEmployee(@RequestBody Employee employee) {
+        return service.addEmployee(employee);
     }
 
+    // GET ALL EMPLOYEES
     @GetMapping
-    public List<Employee> show(){
+    public List<Employee> getEmployees() {
         return service.getEmployees();
     }
 
+    // GET EMPLOYEE BY ID
     @GetMapping("/{id}")
-    public Employee get(@PathVariable int id){
+    public Employee getEmployee(@PathVariable int id) {
         return service.getEmployee(id);
     }
 
+    // DELETE EMPLOYEE
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable int id){
+    public String deleteEmployee(@PathVariable int id) {
+
+        Employee emp = service.getEmployee(id);
+
+        if(emp == null) {
+            throw new RuntimeException("Employee not found");
+        }
+
         service.deleteEmployee(id);
-        return "Employee deleted";
+
+        return "Employee deleted successfully";
     }
 }
