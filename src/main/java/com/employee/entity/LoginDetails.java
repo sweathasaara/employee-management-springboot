@@ -8,21 +8,45 @@ public class LoginDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "employee_id")
-    private int employeeId;
+    private Long employeeId;
 
     private String username;
 
     @Column(name = "password_hash")
-    private String password;
+    private String passwordHash;
 
-    public int getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public int getEmployeeId() { return employeeId; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getUsername() { return username; }
+    public Long getEmployeeId() {
+        return employeeId;
+    }
 
-    public String getPassword() { return password; }
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
 }

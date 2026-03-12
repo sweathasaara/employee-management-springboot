@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                         new UsernameNotFoundException("Invalid username"));
 
         return User.withUsername(user.getUsername())
-                .password("{noop}" + user.getPassword())
+                .password("{noop}" + user.getPasswordHash())
                 .roles("EMPLOYEE")
                 .build();
     }

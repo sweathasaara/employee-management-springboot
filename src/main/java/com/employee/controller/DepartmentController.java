@@ -15,19 +15,16 @@ public class DepartmentController {
     @Autowired
     private DepartmentService service;
 
-    // ADD DEPARTMENT
     @PostMapping
     public Department addDepartment(@RequestBody Department department){
         return service.addDepartment(department);
     }
 
-    // GET ALL DEPARTMENTS
     @GetMapping
     public List<Department> getDepartments(){
         return service.getDepartments();
     }
 
-    // DELETE DEPARTMENT
     @DeleteMapping("/{id}")
     public String deleteDepartment(@PathVariable int id){
         service.deleteDepartment(id);

@@ -6,7 +6,7 @@ import com.employee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/employees")
@@ -15,31 +15,27 @@ public class EmployeeController {
     @Autowired
     private EmployeeService service;
 
-    // ADD EMPLOYEE
     @PostMapping
     public Employee addEmployee(@RequestBody Employee employee) {
         return service.addEmployee(employee);
     }
 
-    // GET ALL EMPLOYEES
     @GetMapping
     public List<Employee> getEmployees() {
         return service.getEmployees();
     }
 
-    // GET EMPLOYEE BY ID
     @GetMapping("/{id}")
     public Employee getEmployee(@PathVariable int id) {
         return service.getEmployee(id);
     }
 
-    // DELETE EMPLOYEE
     @DeleteMapping("/{id}")
     public String deleteEmployee(@PathVariable int id) {
 
         Employee emp = service.getEmployee(id);
 
-        if(emp == null) {
+        if(emp == null){
             throw new RuntimeException("Employee not found");
         }
 
@@ -47,4 +43,35 @@ public class EmployeeController {
 
         return "Employee deleted successfully";
     }
+
+    @GetMapping("/unique-names")
+    public Set<String> uniqueNames(){
+        return service.getUniqueEmployeeNames();
+    }
+
+    @GetMapping("/departments")
+    public Map<Integer,String> departments(){
+        return service.getDepartmentMap();
+    }
+
+    @GetMapping("/salary/{amount}")
+    public List<Employee> highSalary(@PathVariable double amount){
+        return service.getHighSalaryEmployees(amount);
+    }
+
+    @GetMapping("/sorted")
+    public List<Employee> sortedEmployees(){
+        return service.sortEmployeesBySalary();
+    }
+
+    @PostMapping("/login/{id}")
+    public String login(@PathVariable int id){
+        return service.loginEmployee(id);
+    }
+
+    @GetMapping("/sessions")
+    public Map<Integer,String> sessions(){
+        return service.getLoginSessions();
+    }
+
 }

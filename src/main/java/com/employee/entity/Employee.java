@@ -11,10 +11,19 @@ public class Employee {
     private int id;
 
     private String name;
-
     private double salary;
 
+    @Column(name = "department_id")
     private int departmentId;
+
+    public Employee() {}
+
+    public Employee(int id, String name, double salary, int departmentId) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.departmentId = departmentId;
+    }
 
     public int getId() {
         return id;
